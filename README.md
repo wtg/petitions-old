@@ -1,13 +1,14 @@
 About
 =========
 
-PawPrints is a web application for sparking change at RIT. Share ideas and influence decision making by posting petitions. The community votes on the petitions, and once a minimum threshold is reached, a response is issued by an appropriate representative or leader knowledgeable of the issue.
+PawPrints is a web application created by the RIT Student Government. 
 
-Homepage:
-![Homepage](../screenshots/screenshots/homepage.png?raw=true "Home Page")
+Original Sources:
+[Repository](https://github.com/ritstudentgovernment/petitions)
+[Website](https://www.sg.rit.edu/)
 
-Petition Detail page:
-![Petition Detail Page](../screenshots/screenshots/petition_detail_page_with_response.png?raw=true "Petition Detail Page")
+The RPI Web Technologies Group has modified the application for use on the Rensselaer campus. 
+The purpose of this site is to share ideas and influence decision making by posting petitions. The community votes on the petitions, and once a minimum threshold is reached, a response is issued by an appropriate representative or leader knowledgeable of the issue.
 
 
 Requirements
