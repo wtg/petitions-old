@@ -1,4 +1,6 @@
 {
+  "LDAP_URL": "",
+  "MAIL_URL": "",
   "public" : {
     "ga": {
       "account":"UA-XXXXXXXX-Y"
