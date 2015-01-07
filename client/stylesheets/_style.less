@@ -1,4 +1,4 @@
-@import "/packages/bootstrap3-less/bootstrap.import.less";
+@import "/lib/bootstrap.import.less";
 @import "_variables.less";
 
 body {
@@ -9,6 +9,13 @@ body {
   -webkit-border-radius: 0 !important;
      -moz-border-radius: 0 !important;
           border-radius: 0 !important;
+}
+
+::selection {
+  background: lighten(@brand-primary, 30%); /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: lighten(@brand-primary, 30%); /* Gecko Browsers */
 }
 
 blockquote {
@@ -25,9 +32,14 @@ input:not([type="checkbox"]):not([type="radio"]).inverse, textarea.inverse {
   padding: 10px;
 }
 
+
 input[type="text"]:focus, input[type="password"]:focus {
-   box-shadow: 0 0 10px #f7001f;
-   border: 1px #f7001f;
+  box-shadow: 0 0 10px #f7001f;
+  border: 1px #f7001f;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
 
 .application-content {  
@@ -53,6 +65,16 @@ input[type="text"]:focus, input[type="password"]:focus {
   opacity: 0;
 }
 
+input.input-clear:not([type="submit"]):focus{
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+input:not([type="submit"]):focus {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  box-shadow: 0 0 0px 1000px white inset;
+}
+
 .full-width {
   width: 100%;
 }
@@ -73,6 +95,10 @@ input[type="text"]:focus, input[type="password"]:focus {
   outline: none;
   padding: 0;
   margin: 0;
+}
+
+.label {
+  line-height: 1.87;
 }
 
 .modal-login {
@@ -126,4 +152,8 @@ input[type="text"]:focus, input[type="password"]:focus {
   display: -webkit-flex;
   display: -ms-flexbox;
   display:         flex;
+}
+
+.search-icon {
+  padding-right: 10px;
 }

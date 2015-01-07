@@ -7,6 +7,15 @@
   </div>
 </template>
 
+<template name="postsTagList">
+  <div class="application-content container-fluid">
+    {{> petitionGroup posts=posts
+                      postOrder=postOrder
+                      tag=this.tag
+                      noposts="There are no petitions with that tag." }}
+  </div>
+</template>
+
 <template name="postsInProgressList">
   <div class="application-content container-fluid">
     {{> petitionGroup posts=posts
@@ -37,13 +46,16 @@
             data-toggle="tooltip"
             data-placement="bottom"
             title="{{description}}">
-          {{title}}
+          {{#if this.tag}}
+            {{this.tag}} Petitions
+          {{else}}
+            {{title}}
+          {{/if}}
           {{#if description}}
             <div class="glyphicon glyphicon-question-sign"
                   style="zoom: 65%; padding-left: 5px;"></div>
           {{/if}}
         </h2>
-        
       </div>
       <div class="col-xs-12 col-sm-6 col-md-4 col-md-offset-4 col-lg-3 col-lg-offset-6">
         <span class="pull-left" style="color: white;">Sort By</span>

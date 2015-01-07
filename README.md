@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 About
 =========
 
@@ -10,20 +11,12 @@ Original Sources:
 The RPI Web Technologies Group has modified the application for use on the Rensselaer campus. 
 The purpose of this site is to share ideas and influence decision making by posting petitions. The community votes on the petitions, and once a minimum threshold is reached, a response is issued by an appropriate representative or leader knowledgeable of the issue.
 
-
-Requirements
-============
-
-- Install [Node] +  [Meteor.js]
-- Made for Meteor v0.8.3
-
 Usage (Local Development)
 =========================
 
-- Copy .env.sample to .env and edit appropriately. All enviornment variables are required. Ensure read permissions on the file (`chmod`).
-- Install meteorite `npm install -g meteorite`
-- Run `mrt install`
-- From the project root directory, run `meteor --settings settings.json`.
+- Install [Meteor].
+- Copy `settings.json.sample` to `settings.json` and edit appropriately. All properties defined in `settings.json.sample` are required.
+- From the root directory, run `meteor --settings settings.json`.
 
 Usage (Production Enviornment)
 ==============================
@@ -39,7 +32,7 @@ Contributing
 
 
 [Node]:http://nodejs.org/
-[Meteor.js]:https://www.meteor.com/
+[Meteor]:https://www.meteor.com/
 [roadmap]:https://trello.com/b/b6Kyx395/petition-roadmap
 [config]:https://github.com/ritstudentgovernment/config
 [article]:https://gentlenode.com/journal/meteor-1-deploy-and-manage-a-meteor-application-on-ubuntu-with-nginx/1

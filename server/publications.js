@@ -1,10 +1,13 @@
-var findPosts = function (limit, sortBy, status) {
+var findPosts = function (limit, sortBy, status, tagName) {
   var sort = {},
       filter = {};
   sort[sortBy] = -1;
   sort.submitted = -1;
   if (status) {
     filter.status = {$in: [status]};
+  }
+  if (tagName) {
+    filter.tag_ids = {$in: [Tags.findOne({name: tagName})._id]}
   }
   return Posts.find(filter, {
     limit: limit,
@@ -14,13 +17,14 @@ var findPosts = function (limit, sortBy, status) {
       title: 1,
       votes: 1,
       submitted: 1,
-      status: 1
+      status: 1,
+      tag_ids: 1
     }
   });
 };
 
-Meteor.publish('posts', function (limit, sortBy) {
-  return findPosts(limit, sortBy);
+Meteor.publish('posts', function (limit, sortBy, tagName) {
+  return findPosts(limit, sortBy, undefined, tagName);
 });
 
 Meteor.publish('postsInProgress', function (limit, sortBy) {
@@ -43,7 +47,8 @@ Meteor.publish('singlePost', function (id) {
       responded_at: 1,
       upvoters: 1,
       minimumVotes: 1,
-      status: 1
+      status: 1,
+      tag_ids: 1
     }
   });
 });
@@ -104,6 +109,10 @@ Meteor.publish('updates', function (postId) {
       author: 1}
     }
   );
+});
+
+Meteor.publish('tags', function () {
+  return Tags.find();
 });
 
 // Expose individual users' notification preferences 
