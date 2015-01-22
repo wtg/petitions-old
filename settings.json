@@ -4,19 +4,16 @@
     "ga": {
       "account":"UA-XXXXXXXX-Y"
     },
-    "root_url": "http://localhost:3000"
+    "root_url": "http://localhost:3000",
+    "cas": {
+        "loginUrl": "https://cas-auth.rpi.edu/cas/login",
+        "serviceParam": "service",
+        "popupWidth": 810,
+        "popupHeight": 610
+    }
   },
-  // CAS Settings
   "cas": {
     "baseUrl": "https://cas-auth.rpi.edu/cas/",
-     "autoClose": true
-  },
-  "public": {
-      "cas": {
-          "loginUrl": "https://cas-auth.rpi.edu/cas/login",
-          "serviceParam": "service",
-          "popupWidth": 810,
-          "popupHeight": 610
-      }
+    "autoClose": true
   }
 }
