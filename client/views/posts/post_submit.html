@@ -4,7 +4,7 @@
       <div class="row-fluid">
         <form class="main">
           <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
-            <h2><strong>Create a New Petition</strong></h2>
+            <h2 class="lone-header"><strong>Create a New Petition</strong></h2>
 
             <div class="panel panel-default panel-body">
               <p>We recommend reading our <a href="{{pathFor 'petitionProcess'}}">one-minute guide</a> on the Petition Process prior to making a submission.</p>
@@ -25,7 +25,7 @@
                         type="text"
                         rows="15"
                         value="{{ session 'post.description' }}"></textarea>
-            <h2><strong>Preview Petition Card</strong></h2>
+            <h2 class="lone-header"><strong>Preview Petition Card</strong></h2>
           </div>
           <div class="petitions col-sm-10 col-sm-offset-1 col-md-9 col-md-offset-3">
             {{> postCard post=emptyPost }}
