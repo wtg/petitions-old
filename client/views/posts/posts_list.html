@@ -3,7 +3,7 @@
     {{> petitionGroup posts=posts
                       postOrder=postOrder
                       title="All Petitions"
-                      noposts="Be the first to petition your government." }}
+                      noposts="Be the first to petition your student government." }}
   </div>
 </template>
 
@@ -71,7 +71,7 @@
     {{#if empty posts}}
       <div class="panel">
         <p class="footer-subtitle text-center" style="margin: 50px 0;">
-          <p>{{ noposts }}</p><a href="{{pathFor 'postSubmit'}}">Create a petition.</a>
+          <p>{{ noposts }}</p><a href="{{pathFor 'postSubmit'}}">Create a petition</a>
         </p>
       </div>
     {{/if}}
