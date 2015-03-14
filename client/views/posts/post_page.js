@@ -46,7 +46,7 @@ Template.postPage.helpers({
     return this.post.votes >= this.post.minimumVotes ? 'goal-reached' : '';
   },
   'mustReachDate': function() {
-    return new moment(this.post.submitted).add(1, 'month').format('ll');
+    return new moment(this.post.submitted).add(1, 'year').format('ll');
   },
   'petitionStatus': function () {
     var post = Posts.findOne();

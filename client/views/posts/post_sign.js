@@ -2,20 +2,36 @@ Template.postSign.events({
   'submit form': function(e) {
     e.preventDefault();
     var post = this.post;
-    var sign = function () {
-      Meteor.call('sign', post._id, function(error) {
-      if (error)
-        throwError(error.reason);
-      else {
-        var signaturesNeeded = post.minimumVotes - post.votes;
-        if (signaturesNeeded >= 1) {
-          $('#postShareModal').modal('show');
+    var buttonName = $('#sign-petition').attr('value');
+
+    if (buttonName == "Sign") {
+      var modify_sign = function () {
+        Meteor.call('sign', post._id, function(error) {
+        if (error)
+          throwError(error.reason);
+        else {
+          var signaturesNeeded = post.minimumVotes - post.votes;
+          if (signaturesNeeded >= 1) {
+            $('#postShareModal').modal('show');
+          }
         }
-      }
-      });
-    };
+        });
+      };
+    } 
+    else if (buttonName == "Unsign") {
+      var modify_sign = function () {
+        if (confirm("Are you sure you want to remove your signature from this petition?")) {
+          Meteor.call('unsign', post._id, function(error) {
+            if (error) {
+              throwError(error.reason);
+            }
+          });
+        }
+      };
+    }
+
     if (Meteor.userId()) {
-      sign();
+      modify_sign();
     } else {
       Session.set("loginMsg", "Please login to sign.");
       $('#loginModal').modal('show');
@@ -30,7 +46,8 @@ Template.postSign.events({
 Template.postSign.helpers({
   signedClass: function() {
     var userId = Meteor.userId();
-    if (userId && this.post && _.include(this.post.upvoters, userId)) {
+    if (userId && this.post && _.include(this.post.upvoters, userId) 
+        && this.post.minimumVotes <= this.post.votes) {
       return 'disabled';
     } else {
       return '';
@@ -38,9 +55,14 @@ Template.postSign.helpers({
   },
   btnText: function() {
     var userId = Meteor.userId();
-    if (userId && this.post && _.include(this.post.upvoters, userId)) {
+    if (userId && this.post && _.include(this.post.upvoters, userId)
+        && this.post.minimumVotes > this.post.votes) {
+      return 'Unsign';
+    } 
+    else if (userId && this.post && _.include(this.post.upvoters, userId)) {
       return 'Signed';
-    } else {
+    }
+    else {
       return 'Sign';
     }
   }
