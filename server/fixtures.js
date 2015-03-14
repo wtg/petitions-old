@@ -2,7 +2,7 @@
 
 if (Singleton.find().count() === 0) {
   Singleton.insert({
-    minimumThreshold: 25,
+    minimumThreshold: 250,
     threshold_updated_at: new Date().getTime()
   });
 }

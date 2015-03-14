@@ -92,18 +92,38 @@ Meteor.methods({
 
     if (post.votes === post.minimumVotes && Meteor.isServer) {
       var users = Meteor.users.find({roles: {$in: ['notify-threshold-reached']}});
-      var emails = users.map(function (user) { return user.username + "@rit.edu"; });
+      var emails = users.map(function (user) { return user.username + "@rpi.edu"; });
 
       if (!_.isEmpty(emails)) {
         Email.send({
           to: emails,
-          from: "sgnoreply@rit.edu",
-          subject: "PawPrints - Petition Reaches Signature Threshold",
+          from: "wtg-noreply@union.rpi.edu",
+          subject: "RPI Petitions - Petition Reaches Signature Threshold",
           text: "Petition \"" + post.title + "\" by " + post.author + " has reached its minimum signature goal: \n\n" +
                 Meteor.settings.public.root_url + "/petitions/" + postId +
-                "\n\nThanks, \nRIT Student Government"
+                "\n\nThanks, \nRPI Web Technologies Group"
         });
       }
+    }
+
+  },
+
+  unsign: function(postId) {
+    var user = Meteor.user();
+
+    if (!user) 
+      throw new Meteor.Error(401, "You need to login to modify your petition signature");
+
+    var post = Posts.findOne(postId);
+
+    if (post.votes < post.minimumVotes) {
+      Posts.update({
+        _id: postId,
+        upvoters: {$in: [user._id]}
+      }, {
+        $pull: {upvoters: user._id},
+        $inc: {votes: -1}
+      });
     }
 
   },
