@@ -33,12 +33,7 @@ Template.postSign.events({
     if (Meteor.userId()) {
       modify_sign();
     } else {
-      Session.set("loginMsg", "Please login to sign.");
-      $('#loginModal').modal('show');
-      $('#loginModal').on('hidden.bs.modal', function () {
-        if (Meteor.userId())
-          sign();
-      });
+      Meteor.loginWithCas();
     }
   }
 });

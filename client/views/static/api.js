@@ -2,20 +2,20 @@ Template.api.helpers({
   example_list: function makeExamplePetitionList () {
     var response = [
       {
-        author: "Pete Mikitsh",
+        author: "Gabriel Perez",
         submitted: 1409767345903,
         title: "Build more affordable, on-campus housing.",
         description: "As there is only enough housing for half the student population, it creates a challenge to find affordably priced off-campus housing.",
         votes: 50,
         _id: "PYwoRCiAQsWa365af",
-        response: "Hi Pete, thank you for your response. I have reached out to the Director of Housing Operations with your concerns. We will be posting the official response shortly. Thank you. -- Peter Mikitsh, RIT Student Government Webmaster",
+        response: "Hi Gabe, thank you for your response. I have reached out to the Director of Housing Operations with your concerns. We will be posting the official response shortly. Thank you. -- Kyle Keraga, RPI Student Senate",
         responded_at: 1411139919817,
         minimumVotes: 25
       },
       {
-        author: "Pete Mikitsh",
+        author: "Michael Cuozzo",
         submitted: 1410112945911,
-        title: "Extend hours for RIT Computer Labs at peak times.",
+        title: "Extend hours for RPI Computer Labs at peak times.",
         description: "Students often work late near the end of semester; extended lab time will allow more students to utilize this on-campus resource.",
         votes: 4,
         _id: "bDA8ynBMErm9NLaqj",
@@ -26,18 +26,18 @@ Template.api.helpers({
   },
   example_individual: function makeExamplePetition () {
     var response = {  
-       author: "Pete Mikitsh",
+       author: "Justin Etzine",
        submitted: 1410112945911,
-       title: "Extend hours for RIT Computer Labs at peak times.",
+       title: "Extend hours for RPI Computer Labs at peak times.",
        description: "Students often work late near the end of semester; extended lab time will allow more students to utilize this on-campus resource.",
        votes: 4,
        _id: "bDA8ynBMErm9NLaqj",
        minimumVotes: 25,
        signers:[  
-          "PAM",
-          "ALC",
-          "TSP",
-          "NXC"
+          "JE",
+          "GP",
+          "KK",
+          "MC"
        ],
        history:[  
           {  

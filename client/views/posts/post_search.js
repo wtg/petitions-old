@@ -27,6 +27,9 @@ Template.postSearch.events({
   },
   'click a': function (e) {
     $('#modal-search').modal("hide");
+  }, 
+  'submit form': function (e) {
+    e.preventDefault();
   }
 });
 
