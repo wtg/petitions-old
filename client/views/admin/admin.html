@@ -24,17 +24,17 @@
 
 <template name="users">
   <div class="tab-pane active" id="users">
-    <div class="col-sm-4">
+    <div class="col-sm-4 lone-header">
       <h2>Admins</h2>
       <p>Administrators can manage user roles and petitions.</p>
       {{> userList users=admins role="admin" }}
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-4 lone-header">
       <h2>Moderators</h2>
       <p>Moderators can edit or respond to petitions.</p>
       {{> userList users=moderators role="moderator" }}
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-4 lone-header">
       <h2>Notifiers</h2>
       <p>Recieve an e-mail when petitions reaches their goal count.</p>
       {{> userList users=notifiers role="notify-threshold-reached" }}
@@ -44,9 +44,9 @@
 
 <template name="settings">
   <div class="tab-pane" id="settings">
-    <h2>Settings</h2>
+    <h2 class="lone-header">Settings</h2>
     <div class="col-sm-6">
-      <p>Minimum Signature Threshold: Changing the threshold only affects future petitions.</p>
+      <p class="lone-header">Minimum Signature Threshold: Changing the threshold only affects future petitions.</p>
       <form id="thresholdForm">
         <div class="input-group">
           <input name="minimumThreshold"
@@ -69,8 +69,8 @@
 
 <template name="tags">
   <div class="tab-pane" id="tags">
-    <h2>Petition Tags</h2>
-    <p>Manage tags.</p>
+    <h2 class="lone-header">Petition Tags</h2>
+    <p class="lone-header">Manage tags.</p>
     {{#each tags}}
       <form id="tagDelete">
         <div class="input-group">
