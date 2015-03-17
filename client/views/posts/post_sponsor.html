@@ -1,0 +1,38 @@
+<template name="postSponsor">
+  <div class="modal fade"
+       id="postSponsorModal"
+       tabindex="-1"
+       role="dialog"
+       aria-labelledby="postSponsor"
+       aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form class="main">
+          <div class="modal-header">
+            <button type="button"
+                    class="close"
+                    data-dismiss="modal">
+              <span aria-hidden="true">&times;</span>
+              <span class="sr-only">Close</span>
+            </button>
+            <h2 class="modal-title">Assign a New Petition Sponsor</h2>
+          </div>
+          <div class="modal-body" style="font-size: 16px;">
+
+            <select autocomplete="on" 
+                    id="sponsorSelect" name="sponsorId" class="form-control">
+              {{# each availableSponsors}}
+                <option value="{{_id}}"> {{username}} </option>
+              {{/each}}
+            </select>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Assign Sponsor</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</template>

@@ -73,6 +73,19 @@ Template.postPage.helpers({
         };
       }
     }
+  },
+  'hasSponsor': function() {
+    return null === this.post.userId && this.post.author === "UNSPONSORED";
+  },
+  'isSponsor': function() {
+    if (this.post.userId !== null && this.post.author !== "UNSPONSORED") {
+      var user = Meteor.user();
+      // Allow withdrawing sponsorship if author, admin/mod
+      if (Meteor.userId() === this.post.userId || 
+          Roles.userIsInRole(user, ['admin', 'moderator'])) {
+        return true;
+      }
+    }
   }
 });
 
@@ -82,6 +95,15 @@ Template.postPage.events({
     var url = social_links[network] + this.url;
     GAnalytics.event("post", "share", network);
     window.open(url);
+  },
+  'click #withdraw-sponsorship': function(e) {
+    if (confirm("Remove yourself as the petition sponsor?")) {
+      Meteor.call('withdrawSponsorship', this.post._id, function(error) {
+        if (error) {
+          throwError(error.reason);
+        }
+      });
+    }
   }
 });
 
