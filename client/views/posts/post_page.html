@@ -11,12 +11,22 @@
                   <a href="/petitions/tagged/{{this.name}}"><span class="label label-primary">{{upcase this.name}}</span></a>
                 {{/with}}
               {{/each}}
-              {{#if isInRole 'admin' 'moderator'}}
-                <a href="{{pathFor 'postEdit' _id=post._id}}"><span class="label label-primary">EDIT</span></a>
-              {{/if}}
             </p>
             <div class="footer-subtitle">POSTED {{ submitted_at }}</div>
             <div class="footer-subtitle">SPONSORED BY {{post.author}}</div>
+            {{#if isSponsor }}
+              <a href="" class="withdraw-sponsorship" id="withdraw-sponsorship"><span class="label label-primary">WITHDRAW SPONSORSHIP</span></a> 
+            {{/if}}
+            {{#if isInRole 'admin' 'moderator'}}
+              <a href="{{pathFor 'postEdit' _id=post._id}}"><span class="label label-primary">EDIT</span></a>
+              {{#if hasSponsor }}
+                <a href="#postSponsorModal"
+                  class="label label-primary 
+                         dropdown-toggle petition-sponsor"
+                  data-toggle="modal">
+                  ADD SPONSOR</a>
+              {{/if}}
+            {{/if}}
           </p>
           <p class="petition-social-wrapper">
             <a href="#"><img class="social-icon" social="facebook" src="../facebook.svg"></a>
@@ -122,4 +132,5 @@
   </div>
   {{> postReport}}
   {{> postShareModal}}
+  {{> postSponsor}}
 </template>

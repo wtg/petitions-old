@@ -48,7 +48,8 @@ Meteor.publish('singlePost', function (id) {
       upvoters: 1,
       minimumVotes: 1,
       status: 1,
-      tag_ids: 1
+      tag_ids: 1,
+      userId: 1
     }
   });
 });

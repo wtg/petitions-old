@@ -128,6 +128,33 @@ Meteor.methods({
 
   },
 
+  withdrawSponsorship: function(postId) {
+    var post = Posts.findOne(postId);
+    var user = Meteor.user();
+
+    if (user._id === post.userId || Roles.userIsInRole(user, ['admin', 'moderator'])) {
+      // remove the original sponsor of this post 
+      Posts.update(postId, {$set: {author: "UNSPONSORED", userId: undefined}});
+    } else {
+      throw new Meteor.Error(403, "You are not authorized to remove your sponsorship from this petition");
+    }
+  },
+
+  addSponsor: function(postId, sponsorId) {
+    var post = Posts.findOne(postId);
+    var user = Meteor.user();
+    
+    // find the new requested sponsor
+    var sponsor = Meteor.users.findOne({_id: sponsorId});
+
+    if (sponsor && Roles.userIsInRole(user, ['admin', 'moderator'])) {
+      // add a new sponsor to this post
+      Posts.update(postId, {$set: {author: sponsor.profile.name, userId: sponsor._id}});
+    } else {
+      throw new Meteor.Error(403, "You are not authorized to edit a petition's sponsor.");
+    }
+  },
+
   edit: function (postId, postAttributes) {
 
     var oldPost = Posts.findOne(postId, {
@@ -177,6 +204,7 @@ Meteor.methods({
       });
     }
   },
+  
   delete: function (postId) {
 
     var user = Meteor.user();
