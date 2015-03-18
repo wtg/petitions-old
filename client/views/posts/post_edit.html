@@ -16,7 +16,7 @@
                 <ul class="nav nav-tabs" role="tablist">
                   <li class="active"><a href="#petition" role="tab" data-toggle="tab">Petition</a></li>
                   <li><a href="#updates" role="tab" data-toggle="tab">Updates</a></li>
-                  <li><a href="#response" role="tab" data-toggle="tab">Response</a></li>
+                  <li><a href="#response" role="tab" data-toggle="tab">Resolution</a></li>
                 </ul>
               </p>
 
@@ -79,14 +79,14 @@
 
 <template name="petitionResponse">
   <div class="panel panel-default panel-body">
-    <label class="control-label" for="response">Response</label>
-    <p>Use response for the <u>final</u> petition update, e.g., the final decision reached by Administration, the consensus reached by the committee formed for the petition, etc.</p>
+    <label class="control-label" for="response">Resolution</label>
+    <p>Use resolutions for the <u>final</u> petition update, e.g., the final decision reached by Administration, the consensus reached by the committee formed for the petition, etc.</p>
     <p>When a response is initially posted, an e-mail is dispatched to petition signers who subscribe to updates.</p>
   </div>
   <textarea name="response"
             class="form-group form-control input-lg"
             maxlength="4000"
-            placeholder="Petition Response"
+            placeholder="Petition Resolution"
             type="text"
             rows="15"
             value="{{ post.response }}"></textarea>
