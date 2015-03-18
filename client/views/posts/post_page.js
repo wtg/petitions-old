@@ -97,7 +97,7 @@ Template.postPage.events({
     window.open(url);
   },
   'click #withdraw-sponsorship': function(e) {
-    if (confirm("Remove yourself as the petition sponsor?")) {
+    if (confirm("Remove petition sponsor?")) {
       Meteor.call('withdrawSponsorship', this.post._id, function(error) {
         if (error) {
           throwError(error.reason);
