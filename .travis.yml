@@ -1,12 +1,12 @@
-# Pulled from https://github.com/arunoda/travis-ci-meteor-packages/blob/master/.travis-sample.yml
+# Pulled from http://docs.travis-ci.com/user/languages/javascript-with-nodejs/#Meteor-Apps
 # To track tests, visit https://travis-ci.org/
 
-
-sudo: required
 language: node_js
 node_js:
-  - "0.8"
-  - "0.10"
-  
+  - "0.12"
 before_install:
-  - "curl -L http://git.io/ejPSng | /bin/sh"
+  - "curl -L https://raw.githubusercontent.com/arunoda/travis-ci-laika/master/configure.sh | /bin/sh"
+services:
+  - mongodb
+env:
+  - LAIKA_OPTIONS="-t 5000"
