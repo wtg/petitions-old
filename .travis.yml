@@ -1,3 +1,5 @@
+# Pulled from https://github.com/arunoda/travis-ci-meteor-packages/blob/master/.travis-sample.yml
+
 sudo: required
 language: node_js
 node_js:
