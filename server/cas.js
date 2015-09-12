@@ -1,5 +1,5 @@
 Accounts.onCreateUser(function(options, user) {
-  var name = options.profile.name;
+  var name = options.profile.name.toLowerCase();
   user.username = name;
 
   // Build user profile information using CAS id
