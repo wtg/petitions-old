@@ -9,7 +9,9 @@ Accounts.onCreateUser(function(options, user) {
     console.log( error );
   } else {
     console.log( response );
-    var nameObj = JSON.parse();
+    var nameObj = JSON.parse(response);
+    var realName = nameObj.first_name + nameObj.last_name
+
     if nameObj.userType == "Employee"{
       var isEmployee == True
     } else {
@@ -24,7 +26,7 @@ if (!isEmployee){
   user.profile.sn = name;
   user.profile.name = name;
   user.profile.givenName = name;
-  user.profile.displayName = name;
+  user.profile.displayName = realName;
 
   // Remove RCS ID unique numbers and get initials 
   p_name = name.replace(/[0-9]/g, '');
@@ -32,6 +34,7 @@ if (!isEmployee){
   user.profile.initials = user.profile.initials.toUpperCase();
 
   return user;
+} else {
+  return null
 }
-  
 });
