@@ -1,7 +1,24 @@
+meteor add http
+
 Accounts.onCreateUser(function(options, user) {
   var name = options.profile.name.toLowerCase();
   user.username = name;
 
+  HTTP.call( 'GET', 'https://cms.union.rpi.edu/api/users/view_rcs/' + user.username, {}, function( error, response ) {
+  if ( error ) {
+    console.log( error );
+  } else {
+    console.log( response );
+    var nameObj = JSON.parse();
+    if nameObj.userType == "Employee"{
+      var isEmployee == True
+    } else {
+      var isEmployee == False
+    }
+  }
+});
+
+if (!isEmployee){
   // Build user profile information using CAS id
   user.profile = {}
   user.profile.sn = name;
@@ -15,4 +32,6 @@ Accounts.onCreateUser(function(options, user) {
   user.profile.initials = user.profile.initials.toUpperCase();
 
   return user;
+}
+  
 });
