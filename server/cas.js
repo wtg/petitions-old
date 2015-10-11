@@ -4,7 +4,7 @@ Accounts.onCreateUser(function(options, user) {
   var name = options.profile.name.toLowerCase();
   user.username = name;
 
-  HTTP.call( 'GET', 'https://cms.union.rpi.edu/api/users/view_rcs/' + user.username, {}, function( error, response ) {
+  HTTP.call( 'GET', 'https://cms.union.rpi.edu/api/users/view_rcs/' + user.username, {headers: {Authorization: Token [INSERT WEBTECH API KEY HERE FROM CMS]}}, function( error, response ) {
   if ( error ) {
     console.log( error );
   } else {
