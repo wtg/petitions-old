@@ -35,3 +35,7 @@ Contributing
 [roadmap]:https://trello.com/b/b6Kyx395/petition-roadmap
 [config]:https://github.com/ritstudentgovernment/config
 [article]:https://gentlenode.com/journal/meteor-1-deploy-and-manage-a-meteor-application-on-ubuntu-with-nginx/1
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/wtg/petitions/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
