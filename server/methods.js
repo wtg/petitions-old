@@ -16,8 +16,8 @@ Meteor.methods({
       this.unblock();
 
       Email.send({
-        to: "sgweb@rit.edu",
-        from: "sgnoreply@rit.edu",
+        to: "rne@union.rpi.edu",
+        from: "no-reply@petitions.rpiwtg.com",
         subject: "[petitions] Petition Reported",
         text: "Petition \"" + petition.title + "\" by " + petition.author + " was reported as " + reason + "."
       });
