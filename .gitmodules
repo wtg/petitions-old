@@ -1,0 +1,3 @@
+[submodule "packages/meteor-accounts-cas"]
+	path = packages/meteor-accounts-cas
+	url = https://github.com/wtg/meteor-accounts-cas
