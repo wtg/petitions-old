@@ -15,13 +15,13 @@
             <div class="footer-subtitle">POSTED {{ submitted_at }}</div>
             <div class="footer-subtitle">SPONSORED BY {{post.author}}</div>
             {{#if isSponsor }}
-              <a href="" class="withdraw-sponsorship" id="withdraw-sponsorship"><span class="label label-primary">WITHDRAW SPONSORSHIP</span></a> 
+              <a href="" class="withdraw-sponsorship" id="withdraw-sponsorship"><span class="label label-primary">WITHDRAW SPONSORSHIP</span></a>
             {{/if}}
-            {{#if isInRole 'admin' 'moderator'}}
+            {{#if isAdmin }}
               <a href="{{pathFor 'postEdit' _id=post._id}}"><span class="label label-primary">EDIT</span></a>
               {{#if hasSponsor }}
                 <a href="#postSponsorModal"
-                  class="label label-primary 
+                  class="label label-primary
                          dropdown-toggle petition-sponsor"
                   data-toggle="modal">
                   ADD SPONSOR</a>
@@ -124,7 +124,7 @@
                 class="dropdown-toggle petition-report"
                 data-toggle="modal">
                 Report petition</a>
-          
+
         </div>
       </div>
 

@@ -81,10 +81,17 @@ Template.postPage.helpers({
     if (this.post.userId !== null && this.post.author !== "UNSPONSORED") {
       var user = Meteor.user();
       // Allow withdrawing sponsorship if author, admin/mod
-      if (Meteor.userId() === this.post.userId || 
+      if (Meteor.userId() === this.post.userId ||
           Roles.userIsInRole(user, ['admin', 'moderator'])) {
         return true;
       }
+    }
+  },
+  'isAdmin': function() {
+    var user = Meteor.user();
+    // Allow editing only if admin or moderator
+    if (Roles.userIsInRole(user, ['admin', 'moderator'])) {
+      return true;
     }
   }
 });
