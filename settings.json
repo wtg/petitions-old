@@ -2,7 +2,7 @@
   "MAIL_URL": "",
   "public" : {
     "ga": {
-      "account":"UA-XXXXXXXX-Y"
+      "account":"UA-148143717-2"
     },
     "root_url": "http://localhost:3000",
     "cas": {
