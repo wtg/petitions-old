@@ -49,6 +49,40 @@ var validatePost = function validatePost (postAttributes) {
     throw new Meteor.Error(422, 'Description must not exceed 4000 characters. Currently: ' + descriptionLength );
 };
 
+var updateRSS = function updateRSS() {
+  if (Meteor.isServer) {
+    RssFeed.publish('petitions', function(query) {
+      var self = this; // need to store a reference to this so we can add items in the forEach loop later
+
+      self.setValue('title', self.cdata('RPI Petitions'));
+      self.setValue('description', self.cdata('Create and sign petitions. Receive official responses from the Student Senate.'));
+      self.setValue('link', 'https://petitions.union.rpi.edu');
+      self.setValue('lastBuildDate', new Date());
+      self.setValue('pubDate', new Date());
+      self.setValue('ttl', 60);
+
+      Posts.find(query ? query : {}, {sort: {submitted: -1}, limit: 20}).forEach(function(post) {
+        var info = undefined;
+        if (post.response) {
+          info = "Received a Response";
+        } else if (post.votes >= post.minimumVotes) {
+          info = "Reached Vote Threshold";
+        }
+
+        date = new Date();
+        date.setTime(post.submitted);
+
+        self.addItem({
+          title: (info === undefined) ? post.title : (post.title + " (" + post.info + ")"),
+          description: post.description,
+          link: "https://petitions.union.rpi.edu/petitions/" + post._id,
+          pubDate: date
+        });
+      });
+    });
+  }
+}
+
 Meteor.methods({
   post: function(postAttributes) {
 
@@ -70,6 +104,7 @@ Meteor.methods({
     var postId = Posts.insert(post);
 
     Singleton.update({}, {$inc: {postsCount: 1}});
+    updateRSS();
 
     return postId;
   },
@@ -104,6 +139,7 @@ Meteor.methods({
                 "\n\nThanks, \nRPI Web Technologies Group"
         });
       }
+      updateRSS();
     }
 
   },
@@ -124,6 +160,7 @@ Meteor.methods({
         $pull: {upvoters: user._id},
         $inc: {votes: -1}
       });
+      updateRSS();
     }
 
   },
@@ -203,6 +240,8 @@ Meteor.methods({
               "\n\nThanks, \nRIT Student Government"
       });
     }
+
+    updateRSS();
   },
   
   delete: function (postId) {
@@ -215,6 +254,6 @@ Meteor.methods({
     Posts.remove(postId);
 
     Singleton.update({}, {$inc: {postsCount: -1}});
-
+    updateRSS();
   }
 });
