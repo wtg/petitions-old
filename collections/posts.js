@@ -49,8 +49,8 @@ var validatePost = function validatePost (postAttributes) {
     throw new Meteor.Error(422, 'Description must not exceed 4000 characters. Currently: ' + descriptionLength );
 };
 
-var updateRSS = function updateRSS() {
-  if (Meteor.isServer) {
+Meteor.methods({
+  updateRSS: function() {
     RssFeed.publish('petitions', function(query) {
       var self = this; // need to store a reference to this so we can add items in the forEach loop later
 
@@ -80,10 +80,8 @@ var updateRSS = function updateRSS() {
         });
       });
     });
-  }
-}
+  },
 
-Meteor.methods({
   post: function(postAttributes) {
 
     validatePost(postAttributes);
@@ -104,7 +102,7 @@ Meteor.methods({
     var postId = Posts.insert(post);
 
     Singleton.update({}, {$inc: {postsCount: 1}});
-    updateRSS();
+    Metor.call('updateRSS');
 
     return postId;
   },
@@ -139,7 +137,7 @@ Meteor.methods({
                 "\n\nThanks, \nRPI Web Technologies Group"
         });
       }
-      updateRSS();
+      Meteor.call('updateRSS');
     }
 
   },
@@ -160,7 +158,7 @@ Meteor.methods({
         $pull: {upvoters: user._id},
         $inc: {votes: -1}
       });
-      updateRSS();
+      Meteor.call('updateRSS');
     }
 
   },
@@ -241,9 +239,9 @@ Meteor.methods({
       });
     }
 
-    updateRSS();
+    Meteor.call('updateRSS');
   },
-  
+
   delete: function (postId) {
 
     var user = Meteor.user();
@@ -254,6 +252,6 @@ Meteor.methods({
     Posts.remove(postId);
 
     Singleton.update({}, {$inc: {postsCount: -1}});
-    updateRSS();
+    Meteor.call('updateRSS');
   }
 });
