@@ -233,7 +233,7 @@ Meteor.methods({
         from: "sgnoreply@rit.edu",
         subject: "PawPrints - A petition you signed has received a response",
         text: "Hello, \n\n" +
-              "Petition \"" + post.title + "\" by " + oldPost.author + " has recieved a response: \n\n" +
+              "Petition \"" + post.title + "\" by " + oldPost.author + " has received a response: \n\n" +
               Meteor.settings.public.root_url + "/petitions/" + oldPost._id +
               "\n\nThanks, \nRIT Student Government"
       });
