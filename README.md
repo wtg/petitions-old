@@ -13,13 +13,12 @@ The purpose of this site is to share ideas and influence decision making by post
 Usage (Local Development)
 =========================
 
-- Install [Meteor].
-- Copy `settings.json.sample` to `settings.json` and edit appropriately. All properties defined in `settings.json.sample` are required.
-- From the root directory, run `meteor --settings settings.json`.
-
 note: when cloning, run the following to include the CAS auth package for RPI deployment
 
 ```git clone --recursive https://github.com/wtg/petitions```
+
+- Install [Meteor].
+- From the root directory, run `meteor --settings settings.json`.
 
 Usage (Production Enviornment)
 ==============================
