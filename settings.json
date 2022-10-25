@@ -13,7 +13,7 @@
     }
   },
   "cas": {
-    "baseUrl": "https://cas-auth.rpi.edu/cas/",
+    "baseUrl": "https://cas-auth.rpi.edu/cas",
     "autoClose": true
   }
 }
