@@ -50,6 +50,38 @@ var validatePost = function validatePost (postAttributes) {
 };
 
 Meteor.methods({
+  updateRSS: function() {
+    RssFeed.publish('petitions', function(query) {
+      var self = this; // need to store a reference to this so we can add items in the forEach loop later
+
+      self.setValue('title', self.cdata('RPI Petitions'));
+      self.setValue('description', self.cdata('Create and sign petitions. Receive official responses from the Student Senate.'));
+      self.setValue('link', 'https://petitions.union.rpi.edu');
+      self.setValue('lastBuildDate', new Date());
+      self.setValue('pubDate', new Date());
+      self.setValue('ttl', 60);
+
+      Posts.find(query ? query : {}, {sort: {submitted: -1}, limit: 20}).forEach(function(post) {
+        var info = undefined;
+        if (post.response) {
+          info = "Received a Response";
+        } else if (post.votes >= post.minimumVotes) {
+          info = "Reached Vote Threshold";
+        }
+
+        date = new Date();
+        date.setTime(post.submitted);
+
+        self.addItem({
+          title: (info === undefined) ? post.title : (post.title + " (" + post.info + ")"),
+          description: post.description,
+          link: "https://petitions.union.rpi.edu/petitions/" + post._id,
+          pubDate: date
+        });
+      });
+    });
+  },
+
   post: function(postAttributes) {
 
     validatePost(postAttributes);
@@ -70,6 +102,7 @@ Meteor.methods({
     var postId = Posts.insert(post);
 
     Singleton.update({}, {$inc: {postsCount: 1}});
+    Metor.call('updateRSS');
 
     return postId;
   },
@@ -104,6 +137,7 @@ Meteor.methods({
                 "\n\nThanks, \nRPI Web Technologies Group"
         });
       }
+      Meteor.call('updateRSS');
     }
 
   },
@@ -124,6 +158,7 @@ Meteor.methods({
         $pull: {upvoters: user._id},
         $inc: {votes: -1}
       });
+      Meteor.call('updateRSS');
     }
 
   },
@@ -198,13 +233,15 @@ Meteor.methods({
         from: "sgnoreply@rit.edu",
         subject: "PawPrints - A petition you signed has received a response",
         text: "Hello, \n\n" +
-              "Petition \"" + post.title + "\" by " + oldPost.author + " has recieved a response: \n\n" +
+              "Petition \"" + post.title + "\" by " + oldPost.author + " has received a response: \n\n" +
               Meteor.settings.public.root_url + "/petitions/" + oldPost._id +
               "\n\nThanks, \nRIT Student Government"
       });
     }
+
+    Meteor.call('updateRSS');
   },
-  
+
   delete: function (postId) {
 
     var user = Meteor.user();
@@ -215,6 +252,6 @@ Meteor.methods({
     Posts.remove(postId);
 
     Singleton.update({}, {$inc: {postsCount: -1}});
-
+    Meteor.call('updateRSS');
   }
 });

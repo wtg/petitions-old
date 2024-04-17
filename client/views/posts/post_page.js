@@ -58,7 +58,7 @@ Template.postPage.helpers({
     } else if (post.status == "responded") {
       return {
         title: "Responded",
-        description: "This petition has recieved an official response."
+        description: "This petition has received an official response."
       };
     } else {
       if (post.votes >= post.minimumVotes) {

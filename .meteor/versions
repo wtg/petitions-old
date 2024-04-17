@@ -56,6 +56,7 @@ npm-container@1.0.0
 observe-sequence@1.0.6
 ordered-dict@1.0.3
 percolatestudio:synced-cron@1.0.0
+raix:rssfeed@0.0.5
 random@1.0.3
 reactive-dict@1.1.0
 reactive-var@1.0.5
