@@ -40,55 +40,6 @@ if (Posts.find().count() === 0 && process.env.NODE_ENV != "production" ) {
     minimumVotes: Singleton.findOne().minimumThreshold
   });
 
-  Scores.insert({
-    postId: postId_seven_day,
-    created_at: moment().subtract(7, 'days').valueOf(),
-    score: 1,
-    votes: 1
-  });
-
-  Scores.insert({
-    postId: postId_seven_day,
-    created_at: moment().subtract(6, 'days').valueOf(),
-    score: 10,
-    votes: 10
-  });
-
-  Scores.insert({
-    postId: postId_seven_day,
-    created_at: moment().subtract(5, 'days').valueOf(),
-    score: 22,
-    votes: 22
-  });
-
-  Scores.insert({
-    postId: postId_seven_day,
-    created_at: moment().subtract(4, 'days').valueOf(),
-    score: 30,
-    votes: 30
-  });
-
-  Scores.insert({
-    postId: postId_seven_day,
-    created_at: moment().subtract(3, 'days').valueOf(),
-    score: 44,
-    votes: 44
-  });
-
-  Scores.insert({
-    postId: postId_seven_day,
-    created_at: moment().subtract(2, 'days').valueOf(),
-    score: 47,
-    votes: 47
-  });
-
-  Scores.insert({
-    postId: postId_seven_day,
-    created_at: moment().subtract(1, 'day').valueOf(),
-    score: 50,
-    votes: 50
-  });
-
   // Post with 3-day history
 
   var postId_three_day = Posts.insert({
@@ -100,27 +51,6 @@ if (Posts.find().count() === 0 && process.env.NODE_ENV != "production" ) {
     upvoters: [pete._id],
     votes: 4,
     minimumVotes: Singleton.findOne().minimumThreshold
-  });
-
-  Scores.insert({
-    postId: postId_three_day,
-    created_at: moment().subtract(3, 'days').valueOf(),
-    score: 1,
-    votes: 1
-  });
-
-  Scores.insert({
-    postId: postId_three_day,
-    created_at: moment().subtract(2, 'days').valueOf(),
-    score: 2,
-    votes: 2
-  });
-
-  Scores.insert({
-    postId: postId_three_day,
-    created_at: moment().subtract(1, 'day').valueOf(),
-    score: 4,
-    votes: 4
   });
 
   // Post with 0-day history

@@ -27,13 +27,6 @@ SyncedCron.add({
         petition._id,
         {$set: {score: newScore, change: newChange}}
       );
-
-      Scores.insert({
-        postId: petition._id,
-        created_at: new Date().getTime(),
-        score: newScore,
-        votes: petition.votes
-      });
     });
 
     return "Job done.";

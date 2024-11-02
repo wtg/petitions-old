@@ -50,17 +50,6 @@ if (Meteor.isServer) {
           if (post) {
             this.setContentType('application/json');
             post.signers = Meteor.users.find({'_id': {$in: post.upvoters}}).map(function (signer) { return signer.profile.initials });
-            post.history = Scores.find({
-                              postId: post._id, 
-                              created_at: { $gte: moment().startOf('day').subtract(1, 'week').valueOf() }
-                            }, {
-                              fields: {
-                                created_at: 1,
-                                votes: 1
-                              },
-                              limit: 7,
-                              sort: {created_at: 1}
-                            }).fetch();
             delete post.upvoters;
             return JSON.stringify(post);
           } else
