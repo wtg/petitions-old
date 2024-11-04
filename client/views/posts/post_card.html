@@ -1,7 +1,5 @@
 <template name="postCard">
   <div class="square col-xs-12 col-sm-6 col-md-4 col-lg-3">
-    <div class = "flip-card-inner"> </div>
-      <div class = "flip-card-front"> </div>
     <div class="square-content {{ post.status }}">
       <h4 class="petition-sign-count">{{pluralize post.votes "Signature"}}</h4>
       <h3 class="petition-title">
@@ -15,9 +13,7 @@
             <a href="/petitions/tagged/{{this.name}}"><span class="label label-primary">{{upcase this.name}}</span></a>
           {{/with}}
         {{/each}}
-        <div class = "Flip-back" ></div> 
       </p>
     </div>
   </div>
 </template>
-
