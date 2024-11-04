@@ -188,16 +188,25 @@
 }
 
 .square {
-  padding-bottom: 15px;
-  padding-top: 15px;
+  padding-bottom: 25px;
+  padding-top: 25px;
   animation: popin 0.5s; 
   -webkit-animation: popin 0.5s; 
   -moz-animation: popin 0.5s; 
+  border: 25px @brand-primary;
+
+  // border-radius: 25px;
+  // border: 2px solid #ad212f;
+  // padding: 20px;
+  // width: 200px;
+  // height: 150px;
 }
 
 .square-content {
-  background: #fff;
+  background: #fff; 
   padding: 15px;
+  // border-style: solid;
+  // border-color: #f7001f
   @media (max-width: @screen-sm-min) {
     min-height: 100px;
   }
@@ -286,7 +295,7 @@
   position: absolute;
   width: 0;
   height: 0;
-  border-top: 50px solid @brand-primary;
+  border-top: 50px solid red;
   border-left: 50px solid transparent;
   right: 15px;
   top: 15px;
